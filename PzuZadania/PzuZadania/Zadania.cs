@@ -25,7 +25,7 @@ namespace PzuZadania
             Console.WriteLine("Podaj liczby do posortowania: ");
             string sNumbers = Console.ReadLine();
             string[] sNumbersArray = sNumbers.Split(" ");
-            
+
             for (int i = 0; i < sNumbersArray.Length; i++)
             {
                 for (int j = 0; j < sNumbersArray.Length - 1; j++)
@@ -77,10 +77,51 @@ namespace PzuZadania
                         result = calculator.Sum(x, y);
                         Console.WriteLine($"Wynik dodawania {x} + {y} to {result}. ");
                         break;
+                    case 2:
+                        result = calculator.Subtract(x, y);
+                        Console.WriteLine($"Wynik odejmowania {x} - {y} to {result}. ");
+                        break;
+                    case 3:
+                        result = calculator.Multiply(x, y);
+                        Console.WriteLine($"Wynik mnożenia {x} * {y} to {result}. ");
+                        break;
+                    case 4:
+                        try
+                        {
+                            result = calculator.Divide(x, y);
+                            Console.WriteLine($"Wynik dzielenia {x} / {y} to {result}. ");
+                        }
+                        catch (DivideByZeroException ex)
+                        {
+                            ShowError(ex.Message);
+                        }
+                        catch (Exception ex)
+                        {
+                            ShowError("Wystąpił niespodziewany problem.");
+                        }
+                        break;
+                    case 5:
+                        try
+                        {
+                            result = calculator.Modulo(x, y);
+                            Console.WriteLine($"Wynik reszty z dzielenia {x} / {y} to {result}. ");
+                        }
+                        catch (Exception ex)
+                        {
+                            ShowError(ex.Message);
+                        }
+                        break;
                     default:
                         break;
                 }
             }
+        }
+
+        private void ShowError(string message)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine(message);
+            Console.ResetColor();
         }
     }
 }
