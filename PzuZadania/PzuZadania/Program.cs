@@ -16,6 +16,7 @@ namespace PzuZadania
             Console.WriteLine("MENU:");
             Console.WriteLine("\t1. 10 pierwszych liczb");
             Console.WriteLine("\t2. Pobierz i posortuj liczby");
+            Console.WriteLine("\t3. Kalkulator");
             Console.WriteLine();
             Console.Write("Podaj nr pozycji: ");
 
@@ -29,6 +30,9 @@ namespace PzuZadania
                         break;
                     case 2:
                         zadania.GetAndSortNumbers();
+                        break;
+                    case 3:
+                        zadania.ShowCalculator();
                         break;
                     default:
                         Console.ForegroundColor = ConsoleColor.Red;

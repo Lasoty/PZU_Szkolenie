@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PzuZadania
 {
-    class Zadania
+    internal class Zadania
     {
         public void TopTenNumbers()
         {
@@ -47,6 +47,40 @@ namespace PzuZadania
                 Console.Write(item + " ");
             }
 
+        }
+
+        public void ShowCalculator()
+        {
+            Console.Clear();
+            Console.WriteLine("KALKULATOR");
+            Console.WriteLine(" 1. Dodawanie");
+            Console.WriteLine(" 2. Odejmowanie");
+            Console.WriteLine(" 3. Mnożenie");
+            Console.WriteLine(" 4. Dzielenie");
+            Console.WriteLine(" 5. Reszta z dzielenia");
+
+            if (int.TryParse(Console.ReadLine(), out int choose))
+            {
+                Console.Clear();
+                Console.Write("Podaj x: ");
+                int x = int.Parse(Console.ReadLine());
+
+                Console.Write("Podaj y: ");
+                int y = int.Parse(Console.ReadLine());
+
+                Calculator calculator = new Calculator();
+                float result = 0;
+
+                switch (choose)
+                {
+                    case 1:
+                        result = calculator.Sum(x, y);
+                        Console.WriteLine($"Wynik dodawania {x} + {y} to {result}. ");
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
     }
 }
