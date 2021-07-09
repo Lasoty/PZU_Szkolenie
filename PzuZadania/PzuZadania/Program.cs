@@ -18,6 +18,7 @@ namespace PzuZadania
             Console.WriteLine("\t2. Pobierz i posortuj liczby");
             Console.WriteLine("\t3. Kalkulator");
             Console.WriteLine("\t4. Manipulowanie plikami");
+            Console.WriteLine("\t5. Car manager");
             Console.WriteLine();
             Console.Write("Podaj nr pozycji: ");
 
@@ -37,6 +38,9 @@ namespace PzuZadania
                         break;
                     case 4:
                         zadania.ManageFiles();
+                        break;
+                    case 5:
+                        zadania.CarManager();
                         break;
                     default:
                         Console.ForegroundColor = ConsoleColor.Red;

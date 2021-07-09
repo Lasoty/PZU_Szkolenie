@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace PzuZadania
 {
-    class Car
+    public class Car
     {
-        public Car(string brand, string model) : this(CarType.Passenger, brand, model)
+        public Car(string brand, string model) : this(CarTypes.Passenger, brand, model)
         {
 
         }
 
-        public Car(CarType type, string brand, string model)
+        public Car(CarTypes type, string brand, string model)
         {
             Brand = brand;
             Model = model;
@@ -23,13 +23,13 @@ namespace PzuZadania
 
         public string Brand;
         public string Model;
-        private CarType carType;
+        private CarTypes carType;
         private int currentFuel;
         private int maxFuel = 40;
 
         public CarColors Color { get; set; }
 
-        public CarType Type
+        public CarTypes Type
         {
             get
             {
@@ -63,7 +63,7 @@ namespace PzuZadania
         }
     }
 
-    public enum CarType
+    public enum CarTypes
     {
         Truck,
         Passenger,

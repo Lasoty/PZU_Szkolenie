@@ -8,6 +8,8 @@ namespace PzuZadania
 {
     internal class Zadania
     {
+        CarManager carManager;
+
         public void TopTenNumbers()
         {
             for (int i = 1; i <= 10; i++)
@@ -47,6 +49,53 @@ namespace PzuZadania
                 Console.Write(item + " ");
             }
 
+        }
+
+        internal void CarManager()
+        {
+            carManager = new CarManager();
+            do
+            {
+                ShowCarManagerMenu();
+                if (int.TryParse(Console.ReadLine(), out int choose))
+                {
+                    if (choose == 0) break;
+
+                    ExecuteAction(choose);
+                }
+            } while (true);
+        }
+
+        private void ExecuteAction(int choose)
+        {
+            switch (choose)
+            {
+                case 1:
+                    ShowCars(carManager.GetCarList());
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void ShowCars(IList<Car> cars)
+        {
+            foreach (var car in cars)
+            {
+                Console.WriteLine($"{car.Brand}\t{car.Model}\t{car.Color}\t{car.Type}");
+            }
+            Console.ReadLine();
+        }
+
+        private void ShowCarManagerMenu()
+        {
+            Console.Clear();
+            Console.WriteLine("CAR MANAGER 1.0");
+            Console.WriteLine("Menu: ");
+            Console.WriteLine("  1. Wyświetl listę aut");
+            Console.WriteLine("  2. Dodaj auto");
+            Console.WriteLine("  3. Zapisz do CSV");
+            Console.WriteLine("  0. Zakończ");
         }
 
         public void ManageFiles()
