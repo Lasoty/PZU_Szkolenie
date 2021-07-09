@@ -49,6 +49,32 @@ namespace PzuZadania
 
         }
 
+        public void ManageFiles()
+        {
+            Console.Clear();
+            Console.WriteLine("FILE MANAGER");
+            Console.WriteLine(" 1. Zapis do pliku");
+            Console.WriteLine(" 2. Odczyt z pliku");
+            if (int.TryParse(Console.ReadLine(), out int choose))
+            {
+                FileManager fileManager = new FileManager();
+                switch (choose)
+                {
+                    case 1:
+                        Console.WriteLine("Co chcesz zapisać w pliku:");
+                        string text = Console.ReadLine();
+                        fileManager.SaveToFile(text);
+                        break;
+                    case 2:
+                        Console.WriteLine("Zawartość pliku:");
+                        Console.WriteLine(fileManager.ReadFromFile("userText.txt"));
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
         public void ShowCalculator()
         {
             Console.Clear();
