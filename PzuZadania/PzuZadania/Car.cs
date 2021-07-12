@@ -8,6 +8,12 @@ namespace PzuZadania
 {
     public class Car
     {
+        public Car()
+        {
+
+        }
+
+
         public Car(string brand, string model) : this(CarTypes.Passenger, brand, model)
         {
 
@@ -61,6 +67,13 @@ namespace PzuZadania
             }
             return currentFuel;
         }
+    }
+
+    public class Bus : Car
+    {
+        public int SitCount { get; set; }
+
+        public int StandingSitCount { get; set; }
     }
 
     public enum CarTypes

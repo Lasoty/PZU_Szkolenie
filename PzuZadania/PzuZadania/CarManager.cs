@@ -39,6 +39,16 @@ namespace PzuZadania
                 Color = CarColors.Green,
                 Type = CarTypes.Passenger
             });
+
+            Bus bus = new Bus()
+            {
+                SitCount = 40,
+            };
+
+            Car car = new Car()
+            {
+                
+            };
         }
 
         List<Car> carList;
