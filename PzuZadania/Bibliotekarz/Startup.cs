@@ -1,6 +1,8 @@
+using Bibliotekarz.Model.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -17,6 +19,11 @@ namespace Bibliotekarz
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<AppDbContext>(
+                    options => 
+                        options.UseSqlServer("Server=localhost;Database=BibliotekarzDb;Integrated security=true;MultipleActiveResultSet=true;Connection timeout=5")
+                );
+
             services.AddControllersWithViews();
             services.AddRazorPages();
         }

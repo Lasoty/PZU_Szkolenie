@@ -1,5 +1,9 @@
 ﻿using Bibliotekarz.Model;
+using Bibliotekarz.Model.Context;
+using Bibliotekarz.Model.Entities;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +13,13 @@ namespace Bibliotekarz.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly AppDbContext dbContext;
+
+        public HomeController(AppDbContext dbContext)
+        {
+            this.dbContext = dbContext;
+        }
+
         public IActionResult Index()
         {
             HomeViewModel model = new HomeViewModel();

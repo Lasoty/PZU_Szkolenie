@@ -1,4 +1,4 @@
-﻿namespace Bibliotekarz.Model
+﻿namespace Bibliotekarz.Model.Entities
 {
     public class Customer
     {

@@ -14,24 +14,18 @@
             </tr>
         </thead>
         <tbody>
+            @foreach (var book in Model.BookList)
+            {
             <tr>
-                <th scope="row">1</th>
-                <td>Programowanie w C#</td>
-                <td>Leszek Lewandowski</td>
-                <td>456</td>
-                <td>Tak</td>
-                <td>Adam</td>
-                <td>Nowak</td>
+                <th scope="row">@book.Id</th>
+                <td>@book.Title</td>
+                <td>@book.Author</td>
+                <td>@book.PageCount</td>
+                <td>@(book.IsBorrowed ? "Tak" : "Nie")</td>
+                <td>@book.Borrower?.FirstName</td>
+                <td>@book.Borrower?.LastName</td>
             </tr>
-            <tr>
-                <th scope="row">1</th>
-                <td>Programowanie w C#</td>
-                <td>Leszek Lewandowski</td>
-                <td>456</td>
-                <td>Tak</td>
-                <td>Adam</td>
-                <td>Nowak</td>
-            </tr>
+            }
         </tbody>
     </table>
 </div>
