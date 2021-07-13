@@ -21,7 +21,7 @@ namespace Bibliotekarz
         {
             services.AddDbContext<AppDbContext>(
                     options => 
-                        options.UseSqlServer("Server=localhost;Database=BibliotekarzDb;Integrated security=true;MultipleActiveResultSet=true;Connection timeout=5")
+                        options.UseSqlServer("Server=localhost;Database=BibliotekarzDb;Integrated security=true;MultipleActiveResultSets=true;Connection timeout=5")
                 );
 
             services.AddControllersWithViews();

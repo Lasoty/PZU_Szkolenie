@@ -1,4 +1,6 @@
-﻿namespace Bibliotekarz.Model.Entities
+﻿using System.Collections.Generic;
+
+namespace Bibliotekarz.Model.Entities
 {
     public class Book
     {
@@ -13,5 +15,7 @@
         public bool IsBorrowed { get; set; }
 
         public Customer Borrower { get; set; }
+        
+        public int? BorrowerId { get; set; }
     }
 }
