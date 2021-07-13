@@ -23,28 +23,34 @@ namespace Bibliotekarz.Controllers
         public IActionResult Index()
         {
             HomeViewModel model = new HomeViewModel();
-            model.BookList = new List<Book>()
-            {
-                new Book() 
-                {
-                    Id = 1,
-                    Author = "John Sharp",
-                    Title = "C# programming",
-                    PageCount = 654,
-                    IsBorrowed = true,
-                    Borrower = new Customer()
-                    {
-                        Id = 11,
-                        FirstName = "Leszek",
-                        LastName = "Lewandowski"
-                    }
-                },
-                new Book(),
-                new Book(),
-            };
-
+            model.BookList = dbContext.Books
+                //.Where(b => b.Author.Contains("Leszek"))
+                .ToList();
 
             return View(model);
+        }
+
+        public IActionResult AddBook()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddBook(AddBookViewModel model)
+        {
+            Book book = new Book()
+            {
+                Author = model.Author,
+                Title = model.Title,
+                PageCount = model.PageCount,
+                IsBorrowed = model.IsBorrowed
+            };
+
+            dbContext.Books.Add(book);
+            dbContext.SaveChanges();
+
+            ViewBag.Message = "Zapisano do bazy danych";
+            return RedirectToAction(nameof(Index));
         }
     }
 }

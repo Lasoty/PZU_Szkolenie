@@ -1,5 +1,15 @@
 ﻿@model Bibliotekarz.Model.HomeViewModel
 
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>@ViewBag.Message
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+
 <div>
     <table class="table table-striped">
         <thead class="thead-dark">
@@ -16,15 +26,15 @@
         <tbody>
             @foreach (var book in Model.BookList)
             {
-            <tr>
-                <th scope="row">@book.Id</th>
-                <td>@book.Title</td>
-                <td>@book.Author</td>
-                <td>@book.PageCount</td>
-                <td>@(book.IsBorrowed ? "Tak" : "Nie")</td>
-                <td>@book.Borrower?.FirstName</td>
-                <td>@book.Borrower?.LastName</td>
-            </tr>
+                <tr>
+                    <th scope="row">@book.Id</th>
+                    <td>@book.Title</td>
+                    <td>@book.Author</td>
+                    <td>@book.PageCount</td>
+                    <td>@(book.IsBorrowed ? "Tak" : "Nie")</td>
+                    <td>@book.Borrower?.FirstName</td>
+                    <td>@book.Borrower?.LastName</td>
+                </tr>
             }
         </tbody>
     </table>
