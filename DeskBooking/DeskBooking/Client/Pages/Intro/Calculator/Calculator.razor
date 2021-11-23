@@ -1,0 +1,32 @@
+﻿@page "/calculator"
+
+<h3>Calculator</h3>
+
+<div class="row">
+    <EditForm Model="@this">
+        <div class="col-6">
+            <label>
+                Liczba a
+                <InputNumber class="form-control" @bind-Value="liczbaA" />
+            </label>
+        </div>
+
+        <div class="col-6">
+            <label>
+                Liczba b
+                <InputNumber class="form-control" @bind-Value="liczbaB" />
+            </label>
+        </div>
+    </EditForm>
+</div>
+
+<div class="row">
+    <div class="col-4">
+        <button @onclick="Sum" class="btn btn-primary">Dodaj</button>
+    </div>
+</div>
+
+<div class="row">
+    <h2>Wynik to: @result</h2>
+</div>
+
