@@ -1,5 +1,16 @@
 ﻿@page "/"
 @layout MainLayout
 
+<Row>
+    <Column ColumnSize="ColumnSize.IsFull">
+        <Card Margin="Margin.Is4.FromBottom">
+            <CardBody>
+                <LineChart @ref="lineChart" TItem="int" Options="lineChartOptions" />
+            </CardBody>
 
-<h3>Dashboard</h3>
+            <CardBody>
+                <CardTitle Size="4">Rezerwacje</CardTitle>
+            </CardBody>
+        </Card>
+    </Column>
+</Row>
