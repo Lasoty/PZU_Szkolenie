@@ -1,7 +1,11 @@
 ﻿using Blazorise.Charts;
+using DeskBooking.Shared.ModelDto;
+using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Json;
 using System.Threading.Tasks;
 
 namespace DeskBooking.Client.Pages.DashboardArea
@@ -9,8 +13,11 @@ namespace DeskBooking.Client.Pages.DashboardArea
     public partial class Dashboard
     {
         LineChart<int> lineChart;
+        string[] Labels = Enumerable.Range(1, 30).Select(x => x.ToString()).ToArray();
+        List<DeskReservationDto> data;
 
-        string[] Labels = { "Red", "Blue", "Yellow", "Green", "Purple", "Orange" };
+        [Inject]
+        public HttpClient HttpClient { get; set; }
 
         LineChartOptions lineChartOptions = new()
         {
@@ -23,6 +30,8 @@ namespace DeskBooking.Client.Pages.DashboardArea
         {
             if (firstRender)
             {
+                data = await HttpClient.
+                    GetFromJsonAsync<List<DeskReservationDto>>("Statistics/ReservationsInLastMonth");
                 await HandleRedraw();
             }
         }
@@ -39,7 +48,7 @@ namespace DeskBooking.Client.Pages.DashboardArea
             return new()
             {
                 Label = "Zarezerwowanych biurek ",
-                Data = RandomizeData(),
+                Data = GetLastMonthReservations(),
                 BackgroundColor = ChartColor.FromRgba(255, 99, 132, 0.2f).ToJsRgba(), // line chart can only have one color
                 BorderColor = ChartColor.FromRgba(255, 99, 132, 1f).ToJsRgba(),
                 Fill = true,
@@ -53,7 +62,12 @@ namespace DeskBooking.Client.Pages.DashboardArea
         {
             var r = new Random(DateTime.Now.Millisecond);
             return Enumerable.Range(0, 100).Select(x => r.Next(0, 1000)).ToList()  ;
+        }
 
+        private List<int> GetLastMonthReservations()
+        {
+            var result = data.GroupBy(x => x.ReservationStartAt).Select(x => x.Count());
+            return result.ToList();
         }
     }
 }
