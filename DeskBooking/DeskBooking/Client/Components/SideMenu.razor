@@ -1,0 +1,78 @@
+﻿<Bar Breakpoint="Breakpoint.Desktop" NavigationBreakpoint="Breakpoint.Tablet" ThemeContrast="ThemeContrast.Dark"     Mode="BarMode.VerticalInline" CollapseMode="BarCollapseMode.Small">
+    <BarToggler />
+    <BarBrand>
+        <BarItem>
+            <BarLink To="">
+                <BarIcon IconName="customIcon" />
+                Desk Booking
+            </BarLink>
+        </BarItem>
+    </BarBrand>
+    <BarMenu>
+        <BarStart>
+            <BarItem>
+                <BarLink To="">
+                    <BarIcon IconName="IconName.Dashboard" />
+                    Dashboard
+                </BarLink>
+            </BarItem>
+            <BarItem>
+                <BarDropdown @bind-Visible="reservationsVisible">
+                    <BarDropdownToggle>
+                        <BarIcon IconName="IconName.Wrench" />
+                        Rezerwacje
+                    </BarDropdownToggle>
+                    <BarDropdownMenu>
+                        <BarDropdownItem To="reservations/new">
+                            Nowa
+                        </BarDropdownItem>
+                        <BarDropdownItem To="reservations/list">
+                            Lista
+                        </BarDropdownItem>
+                    </BarDropdownMenu>
+                </BarDropdown>
+            </BarItem>
+            <BarItem>
+                <BarDropdown @bind-Visible="administrationVisible">
+                    <BarDropdownToggle>
+                        <BarIcon IconName="IconName.Server" />
+                        Administracja
+                    </BarDropdownToggle>
+                    <BarDropdownMenu>
+                        <BarDropdownItem To="administration/desks">
+                            Biurka
+                        </BarDropdownItem>
+                        <BarDropdownItem To="administration/reservations">
+                            Rezerwacje
+                        </BarDropdownItem>
+                        <BarDropdownItem To="administration/statistics">
+                            Statystyki
+                        </BarDropdownItem>
+                    </BarDropdownMenu>
+                </BarDropdown>
+            </BarItem>
+        </BarStart>
+        <BarEnd>
+            <BarItem>
+                <BarDropdown @bind-Visible="@utilitiesVisible">
+                    <BarDropdownToggle>
+                        <BarIcon IconName="IconName.Flask" />
+                        Utilities
+                    </BarDropdownToggle>
+                    <BarDropdownMenu>
+                        <BarDropdownItem To="tests/utilities/borders">
+                            Borders
+                        </BarDropdownItem>
+                    </BarDropdownMenu>
+                </BarDropdown>
+            </BarItem>
+        </BarEnd>
+    </BarMenu>
+</Bar>
+@code {
+    private bool reservationsVisible = true;
+    private bool administrationVisible = false;
+    private bool utilitiesVisible = false;
+
+    RenderFragment customIcon =@<img src="~/images/logo.png" style="width:32px; height: 32px" />;
+}
