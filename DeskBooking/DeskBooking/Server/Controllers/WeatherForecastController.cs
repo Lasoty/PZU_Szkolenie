@@ -24,7 +24,8 @@ namespace DeskBooking.Server.Controllers
             _logger = logger;
         }
 
-        [HttpGet]
+        //[HttpGet("[action]/{id}")] //  localhost:8080/WeatherForecast/Get/123
+        [HttpGet] // localhost:8080/WeatherForecast
         public IEnumerable<WeatherForecast> Get()
         {
             var rng = new Random();
