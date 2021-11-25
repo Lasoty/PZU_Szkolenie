@@ -1,0 +1,50 @@
+﻿@page "/reservations/new"
+
+<Row>
+    <Column>
+        <Card Margin="Margin.Is4.OnY">
+            <CardHeader>
+                <CardTitle>Nowa rezerwacja</CardTitle>
+            </CardHeader>
+            <CardBody>
+                <CardText>Wprowadź dane rezerwacji biurka.</CardText>
+            </CardBody>
+            <CardBody>
+                <Field Horizontal="false">
+                    <FieldLabel ColumnSize="ColumnSize.IsFull.OnTablet.Is2.OnDesktop">Data początkowa</FieldLabel>
+                    <FieldBody>
+                        <DateEdit @onchange="DateSelectionChanged" @bind-Date="vm.Start" TValue="DateTime" InputMode="DateInputMode.Date" />
+                    </FieldBody>
+                </Field>
+                <Field Horizontal="true">
+                    <FieldLabel ColumnSize="ColumnSize.IsFull.OnTablet.Is2.OnDesktop">Data koncowa</FieldLabel>
+                    <FieldBody>
+                        <DateEdit @onchange="DateSelectionChanged" @bind-Date="vm.End" TValue="DateTime" InputMode="DateInputMode.Date" />
+                    </FieldBody>
+                </Field>
+
+                <Field>
+                    <FieldLabel ColumnSize="ColumnSize.IsFull.OnTablet.Is2.OnDesktop">Biurko</FieldLabel>
+                    <FieldBody>
+                        <Select TValue="int" SelectedValue="vm.SelectedDesk">
+                            @foreach (var item in vm.DeskList)
+                            {
+                                <SelectItem Value="@item.Key">@item.Value</SelectItem>
+                            }
+                        </Select>
+                    </FieldBody>
+                </Field>
+            </CardBody>
+            <CardBody>
+                <Button Color="Color.Primary" Clicked="Save">
+                    <Icon Name="IconName.Save" />
+                    Zapisz
+                </Button>
+                <Button Color="Color.Secondary" Clicked="Cancel">
+                    <Icon Name="IconName.Times" />
+                    Anuluj
+                </Button>
+            </CardBody>
+        </Card>
+    </Column>
+</Row>

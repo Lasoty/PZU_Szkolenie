@@ -1,0 +1,26 @@
+﻿using DeskBooking.Shared.ModelDto;
+using DeskBooking.Shared.Requests;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace DeskBooking.Server.Controllers
+{
+    public class DesksController : BaseApiController
+    {
+        public DesksController()
+        {
+
+        }
+
+        [HttpPost("[action]")]
+        public async Task<IActionResult> FreeDesks(FreeDesksRequest request)
+        {
+            ICollection<DeskDto> result = new List<DeskDto>();
+            //TODO: Pobieranie danych
+            return Ok(result);
+        }
+    }
+}

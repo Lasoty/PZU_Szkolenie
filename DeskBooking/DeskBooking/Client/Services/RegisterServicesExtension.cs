@@ -12,6 +12,7 @@ namespace DeskBooking.Client.Services
         public static IServiceCollection RegisterServices(this IServiceCollection services)
         {
             services.AddScoped<IStatisticsProvider, StatisticsProvider>();
+            services.AddScoped<IDeskDataProvider, DeskDataProvider>();
 
             return services;
         }
