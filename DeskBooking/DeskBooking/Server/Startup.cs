@@ -1,4 +1,7 @@
 using DeskBooking.Domain.Data;
+using DeskBooking.Domain.Repositories;
+using DeskBooking.Services.Common;
+using DeskBooking.Services.StatisticsServices;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -26,6 +29,9 @@ namespace DeskBooking.Server
         {
             services.AddDbContext<ApplicationDbContext>(options => 
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddTransient(typeof(IRepository<>), typeof(BaseRepository<>));
+            services.RegisterDeskBookingServices();
 
             services.AddControllersWithViews();
             services.AddRazorPages();

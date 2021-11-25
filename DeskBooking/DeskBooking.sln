@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeskBooking.Client", "DeskB
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeskBooking.Shared", "DeskBooking\Shared\DeskBooking.Shared.csproj", "{B122A6DB-7132-4913-8578-E21FD52509CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeskBooking.Domain", "DeskBooking.Domain\DeskBooking.Domain.csproj", "{4F1DFDC9-56B3-4D32-B2BA-00D43557B971}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeskBooking.Domain", "DeskBooking.Domain\DeskBooking.Domain.csproj", "{4F1DFDC9-56B3-4D32-B2BA-00D43557B971}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeskBooking.Services", "DeskBooking.Services\DeskBooking.Services.csproj", "{A6F61AA5-B481-49EF-8BDA-7BAB93D40164}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{4F1DFDC9-56B3-4D32-B2BA-00D43557B971}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F1DFDC9-56B3-4D32-B2BA-00D43557B971}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F1DFDC9-56B3-4D32-B2BA-00D43557B971}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6F61AA5-B481-49EF-8BDA-7BAB93D40164}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6F61AA5-B481-49EF-8BDA-7BAB93D40164}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6F61AA5-B481-49EF-8BDA-7BAB93D40164}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6F61AA5-B481-49EF-8BDA-7BAB93D40164}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

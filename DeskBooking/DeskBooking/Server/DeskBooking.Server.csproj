@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\DeskBooking.Domain\DeskBooking.Domain.csproj" />
+    <ProjectReference Include="..\..\DeskBooking.Services\DeskBooking.Services.csproj" />
     <ProjectReference Include="..\Client\DeskBooking.Client.csproj" />
     <ProjectReference Include="..\Shared\DeskBooking.Shared.csproj" />
   </ItemGroup>

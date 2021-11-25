@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DeskBooking.Domain\DeskBooking.Domain.csproj" />
+    <ProjectReference Include="..\DeskBooking\Shared\DeskBooking.Shared.csproj" />
+  </ItemGroup>
+
+</Project>
