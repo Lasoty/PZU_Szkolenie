@@ -82,13 +82,13 @@ namespace DeskBooking.Domain.Repositories
 
         public virtual void RemoveRange(IEnumerable<T> entities)
         {
-            dbContext.Set<T>().AddRange(entities);
+            dbContext.Set<T>().RemoveRange(entities);
             dbContext.SaveChanges();
         }
 
         public virtual async Task RemoveRangeAsync(IEnumerable<T> entities)
         {
-            await dbContext.Set<T>().AddRangeAsync(entities);
+            dbContext.Set<T>().RemoveRange(entities);
             await dbContext.SaveChangesAsync();
         }
 
