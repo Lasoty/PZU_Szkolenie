@@ -1,6 +1,7 @@
 using Blazorise;
 using Blazorise.Bootstrap5;
 using Blazorise.Icons.FontAwesome;
+using DeskBooking.Client.Services;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,13 +27,12 @@ namespace DeskBooking.Client
                 })
                 .AddBootstrap5Providers()
                 .AddFontAwesomeIcons()
-                .AddMemoryCache(); 
-
-            builder.RootComponents.Add<App>("#app");
-
+                .AddMemoryCache()
+                .RegisterServices(); 
+            
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
-
+            builder.RootComponents.Add<App>("#app");
             await builder.Build().RunAsync();
         }
     }

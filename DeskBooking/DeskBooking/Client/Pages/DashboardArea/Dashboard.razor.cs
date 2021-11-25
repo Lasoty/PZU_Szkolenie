@@ -1,4 +1,5 @@
 ﻿using Blazorise.Charts;
+using DeskBooking.Client.Services;
 using DeskBooking.Shared.ModelDto;
 using Microsoft.AspNetCore.Components;
 using System;
@@ -14,10 +15,10 @@ namespace DeskBooking.Client.Pages.DashboardArea
     {
         LineChart<int> lineChart;
         string[] Labels = Enumerable.Range(1, 30).Select(x => x.ToString()).ToArray();
-        List<DeskReservationDto> data;
+        ICollection<DeskReservationDto> data;
 
         [Inject]
-        public HttpClient HttpClient { get; set; }
+        public IStatisticsProvider StatisticsProvider { get; set; }
 
         LineChartOptions lineChartOptions = new()
         {
@@ -30,8 +31,7 @@ namespace DeskBooking.Client.Pages.DashboardArea
         {
             if (firstRender)
             {
-                data = await HttpClient.
-                    GetFromJsonAsync<List<DeskReservationDto>>("Statistics/ReservationsInLastMonth");
+                data = await StatisticsProvider.GetReservationsInLastMonth();
                 await HandleRedraw();
             }
         }
