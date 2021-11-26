@@ -1,5 +1,7 @@
-﻿using System;
+﻿using DeskBooking.Shared.ModelDto;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace DeskBooking.Client.ViewModels.Reservation
 {
@@ -9,7 +11,7 @@ namespace DeskBooking.Client.ViewModels.Reservation
 
         public DateTime End { get; set; }
 
-        public IDictionary<int, string> DeskList { get; set; }
+        public virtual ObservableCollection<DeskDto> DeskList { get; set; }
 
         public int SelectedDesk { get; set; }
     }

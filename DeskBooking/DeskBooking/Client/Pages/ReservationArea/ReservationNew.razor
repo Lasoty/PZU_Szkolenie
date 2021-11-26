@@ -1,4 +1,6 @@
 ﻿@page "/reservations/new"
+@using DeskBooking.Shared.ModelDto
+@using System.Collections.ObjectModel;
 
 <Row>
     <Column>
@@ -26,12 +28,14 @@
                 <Field>
                     <FieldLabel ColumnSize="ColumnSize.IsFull.OnTablet.Is2.OnDesktop">Biurko</FieldLabel>
                     <FieldBody>
-                        <Select TValue="int" SelectedValue="vm.SelectedDesk">
-                            @foreach (var item in vm.DeskList)
-                            {
-                                <SelectItem Value="@item.Key">@item.Value</SelectItem>
-                            }
-                        </Select>
+                        <SelectList TItem="DeskDto"
+                                    TValue="int"
+                                    Data="@vm.DeskList"
+                                    TextField="@(( item ) => item.Number.ToString())"
+                                    ValueField="@((item) => item.Id)"
+                                    @bind-SelectedValue="@vm.SelectedDesk"
+                                    DefaultItemText="Wybierz biurko ..."
+                                    />
                     </FieldBody>
                 </Field>
             </CardBody>

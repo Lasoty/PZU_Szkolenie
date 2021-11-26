@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using DeskBooking.Client.Pages.ReservationArea;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace DeskBooking.Client.Services
 {
@@ -13,6 +14,7 @@ namespace DeskBooking.Client.Services
         {
             services.AddScoped<IStatisticsProvider, StatisticsProvider>();
             services.AddScoped<IDeskDataProvider, DeskDataProvider>();
+            services.AddScoped<IReservationsProvider, ReservationsProvider>();
 
             return services;
         }

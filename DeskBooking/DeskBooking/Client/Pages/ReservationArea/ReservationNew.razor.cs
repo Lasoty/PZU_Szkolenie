@@ -1,9 +1,12 @@
-﻿using DeskBooking.Client.Services;
+﻿using Blazorise;
+using Blazorise.Components;
+using DeskBooking.Client.Services;
 using DeskBooking.Client.ViewModels.Reservation;
 using DeskBooking.Shared.ModelDto;
 using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -12,9 +15,22 @@ namespace DeskBooking.Client.Pages.ReservationArea
     public partial class ReservationNew
     {
         private ReservationNewViewModel vm;
-
+        private bool hasChanged;
+        
         [Inject]
         public IDeskDataProvider DeskProvider { get; set; }
+
+        [Inject]
+        public IReservationsProvider ReservationProvider { get; set; }
+
+        [Inject]
+        public INotificationService Notification { get; set; }
+
+        [Inject]
+        private NavigationManager NavigationManager { get; set; }
+
+        [Inject]
+        private IMessageService MessageService { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
@@ -22,27 +38,62 @@ namespace DeskBooking.Client.Pages.ReservationArea
             {
                 Start = DateTime.Today,
                 End = DateTime.Today,
-                DeskList = new Dictionary<int, string>()
+                DeskList = new ObservableCollection<DeskDto>()
             };
+            await UpdateFreeDesks();
         }
 
         private async Task DateSelectionChanged()
         {
-            Dictionary<int, string> data = (await DeskProvider.GetFreeDesks(vm.Start, vm.End))
-                .Select(x => new { Id = x.Id, Number = x.Number.ToString() })
-                .ToDictionary(x => x.Id, x => x.Number);
-
-            vm.DeskList = data;
+            await UpdateFreeDesks();
         }
 
-        private Task Save()
+        private async Task UpdateFreeDesks()
         {
-            return Task.CompletedTask;
+            vm.DeskList.Clear();
+            foreach (DeskDto item in await DeskProvider.GetFreeDesks(vm.Start, vm.End))
+            {
+                vm.DeskList.Add(item);
+            }
+            StateHasChanged();
         }
 
-        private Task Cancel()
+        private async Task Save()
         {
-            return Task.CompletedTask;
+            ReservationDto reservation = new()
+            {
+                DeskId = vm.SelectedDesk,
+                UserId = 1, //TODO: Pobrać id użytkownika z sesji
+                Start = vm.Start,
+                End = vm.End
+            };
+
+            if (await ReservationProvider.SaveReservation(reservation))
+            {
+                await Notification.Success("Rezerwacja została utworzona.", "Sukces");
+            }
+            else
+            {
+                await Notification.Error("Nie udało się utworzyć rezerwacji.", "Błąd");
+            }
+
+            NavigationManager.NavigateTo("/");
+        }
+
+        private async Task Cancel()
+        {
+            if (hasChanged)
+            {
+                if (await MessageService.Confirm("Czy na pewno chcesz porzucić zmiany?", "Porzucanie zmian"))
+                {
+                    NavigationManager.NavigateTo("/");
+                }
+            }
+            else
+            {
+                NavigationManager.NavigateTo("/");
+            }
+
         }
     }
 }

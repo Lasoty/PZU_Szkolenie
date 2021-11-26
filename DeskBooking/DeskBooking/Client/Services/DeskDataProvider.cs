@@ -15,16 +15,22 @@ namespace DeskBooking.Client.Services
     {
         private readonly HttpClient httpClient;
         private readonly INotificationService notificationService;
+        private readonly JsonSerializerOptions jsonSerializerOptions;
 
         public DeskDataProvider(HttpClient httpClient, INotificationService notificationService)
         {
             this.httpClient = httpClient;
             this.notificationService = notificationService;
+            jsonSerializerOptions = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            };
         }
 
         public async Task<ICollection<DeskDto>> GetFreeDesks(DateTime from, DateTime to)
         {
             ICollection<DeskDto> result = null;
+            string content;
             FreeDesksRequest request = new()
             { 
                 From = from,
@@ -35,8 +41,9 @@ namespace DeskBooking.Client.Services
 
             if (response.IsSuccessStatusCode)
             {
-                string content = await response.Content.ReadAsStringAsync();
-                result = JsonSerializer.Deserialize<ICollection<DeskDto>>(content);
+
+                content = await response.Content.ReadAsStringAsync();
+                result = JsonSerializer.Deserialize<ICollection<DeskDto>>(content, jsonSerializerOptions);
             }
             else
             {

@@ -1,4 +1,5 @@
-﻿using DeskBooking.Shared.ModelDto;
+﻿using DeskBooking.Services.DeskServices;
+using DeskBooking.Shared.ModelDto;
 using DeskBooking.Shared.Requests;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -10,17 +11,24 @@ namespace DeskBooking.Server.Controllers
 {
     public class DesksController : BaseApiController
     {
-        public DesksController()
-        {
+        private readonly IDeskService deskService;
 
+        public DesksController(
+            IDeskService deskService
+            )
+        {
+            this.deskService = deskService;
         }
 
         [HttpPost("[action]")]
         public async Task<IActionResult> FreeDesks(FreeDesksRequest request)
         {
-            ICollection<DeskDto> result = new List<DeskDto>();
-            //TODO: Pobieranie danych
-            return Ok(result);
+            ICollection<DeskDto> result = await deskService.GetFreeDesks(request.From, request.To);
+
+            if (result.Any())
+                return Ok(result);
+
+            return NotFound();
         }
     }
 }
