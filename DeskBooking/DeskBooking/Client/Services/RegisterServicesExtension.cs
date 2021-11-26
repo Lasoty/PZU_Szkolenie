@@ -15,6 +15,7 @@ namespace DeskBooking.Client.Services
             services.AddScoped<IStatisticsProvider, StatisticsProvider>();
             services.AddScoped<IDeskDataProvider, DeskDataProvider>();
             services.AddScoped<IReservationsProvider, ReservationsProvider>();
+            services.AddScoped<IAuthService, AuthService>();
 
             return services;
         }

@@ -10,12 +10,24 @@
             <CardText>Podaj niezbędne dane do utworzenia konta użytkownika.</CardText>
         </CardBody>
         <CardBody>
-            <Validations @ref="registrationValidations" Mode="ValidationMode.Auto" ValidateOnLoad="false"> 
+            <Validations Model="vm" @ref="registrationValidations" Mode="ValidationMode.Auto" ValidateOnLoad="false">
                 <Validation>
                     <Field Horizontal="true">
                         <FieldLabel ColumnSize="ColumnSize.IsFull.OnTablet.Is2.OnDesktop">Imię i nazwisko</FieldLabel>
                         <FieldBody ColumnSize="ColumnSize.IsFull.OnTablet.Is10.OnDesktop">
-                            <TextEdit Placeholder="Imię i Nazwisko">
+                            <TextEdit Placeholder="Imię i Nazwisko" @bind-Text="vm.FullName">
+                                <Feedback>
+                                    <ValidationError />
+                                </Feedback>
+                            </TextEdit>
+                        </FieldBody>
+                    </Field>
+                </Validation>
+                <Validation>
+                    <Field Horizontal="true">
+                        <FieldLabel ColumnSize="ColumnSize.IsFull.OnTablet.Is2.OnDesktop">Nazwa użytkownika</FieldLabel>
+                        <FieldBody ColumnSize="ColumnSize.IsFull.OnTablet.Is10.OnDesktop">
+                            <TextEdit Placeholder="Wprowadź nazwę użytkownika" @bind-Text="vm.UserName">
                                 <Feedback>
                                     <ValidationError />
                                 </Feedback>
@@ -27,7 +39,7 @@
                     <Field Horizontal="true">
                         <FieldLabel ColumnSize="ColumnSize.IsFull.OnTablet.Is2.OnDesktop">Email</FieldLabel>
                         <FieldBody ColumnSize="ColumnSize.IsFull.OnTablet.Is10.OnDesktop">
-                            <TextEdit Placeholder="Wprowadź email">
+                            <TextEdit Placeholder="Wprowadź email" @bind-Text="vm.Email">
                                 <Feedback>
                                     <ValidationError />
                                 </Feedback>
@@ -39,7 +51,7 @@
                     <Field Horizontal="true">
                         <FieldLabel ColumnSize="ColumnSize.IsFull.OnTablet.Is2.OnDesktop">Hasło</FieldLabel>
                         <FieldBody ColumnSize="ColumnSize.IsFull.OnTablet.Is10.OnDesktop">
-                            <TextEdit Role="TextRole.Password" Placeholder="Hasło">
+                            <TextEdit Role="TextRole.Password" Placeholder="Hasło" @bind-Text="vm.Password">
                                 <Feedback>
                                     <ValidationError />
                                 </Feedback>
@@ -51,7 +63,7 @@
                     <Field Horizontal="true">
                         <FieldLabel ColumnSize="ColumnSize.IsFull.OnTablet.Is2.OnDesktop">Powtorz hasło</FieldLabel>
                         <FieldBody ColumnSize="ColumnSize.IsFull.OnTablet.Is10.OnDesktop">
-                            <TextEdit Role="TextRole.Password" Placeholder="Powtórz hasło">
+                            <TextEdit Role="TextRole.Password" Placeholder="Powtórz hasło" @bind-Text="vm.ConfirmPassword">
                                 <Feedback>
                                     <ValidationError />
                                 </Feedback>
@@ -62,7 +74,7 @@
                 <Validation>
                     <Field Horizontal="true" JustifyContent="JustifyContent.End">
                         <FieldBody ColumnSize="ColumnSize.Is10.Is2.WithOffset">
-                            <Check @bind-Checked="@termsAndConditions">
+                            <Check @bind-Checked="vm.TermsAndConditions">
                                 <ChildContent>
                                     Akceptuję <Blazorise.Link To="/content/terms">regulamin</Blazorise.Link>
                                 </ChildContent>
