@@ -1,0 +1,84 @@
+﻿@page "/account/register"
+@layout LoginLayout
+
+<Div Display="Display.Flex" Flex="Flex.JustifyContent.Center" Margin="Margin.Is5.OnDesktop.FromTop.Is3.OnMobile.FromTop">
+    <Card ColumnSize="ColumnSize.Is11.OnMobile.Is6.OnDesktop.IsHalf.OnTablet" Margin="Margin.Is4.OnDesktop.FromTop" Padding="Padding.Is0">
+        <CardHeader>
+            <CardTitle>Rejestracja</CardTitle>
+        </CardHeader>
+        <CardBody>
+            <CardText>Podaj niezbędne dane do utworzenia konta użytkownika.</CardText>
+        </CardBody>
+        <CardBody>
+            <Validations @ref="registrationValidations" Mode="ValidationMode.Auto" ValidateOnLoad="false"> 
+                <Validation>
+                    <Field Horizontal="true">
+                        <FieldLabel ColumnSize="ColumnSize.IsFull.OnTablet.Is2.OnDesktop">Imię i nazwisko</FieldLabel>
+                        <FieldBody ColumnSize="ColumnSize.IsFull.OnTablet.Is10.OnDesktop">
+                            <TextEdit Placeholder="Imię i Nazwisko">
+                                <Feedback>
+                                    <ValidationError />
+                                </Feedback>
+                            </TextEdit>
+                        </FieldBody>
+                    </Field>
+                </Validation>
+                <Validation>
+                    <Field Horizontal="true">
+                        <FieldLabel ColumnSize="ColumnSize.IsFull.OnTablet.Is2.OnDesktop">Email</FieldLabel>
+                        <FieldBody ColumnSize="ColumnSize.IsFull.OnTablet.Is10.OnDesktop">
+                            <TextEdit Placeholder="Wprowadź email">
+                                <Feedback>
+                                    <ValidationError />
+                                </Feedback>
+                            </TextEdit>
+                        </FieldBody>
+                    </Field>
+                </Validation>
+                <Validation>
+                    <Field Horizontal="true">
+                        <FieldLabel ColumnSize="ColumnSize.IsFull.OnTablet.Is2.OnDesktop">Hasło</FieldLabel>
+                        <FieldBody ColumnSize="ColumnSize.IsFull.OnTablet.Is10.OnDesktop">
+                            <TextEdit Role="TextRole.Password" Placeholder="Hasło">
+                                <Feedback>
+                                    <ValidationError />
+                                </Feedback>
+                            </TextEdit>
+                        </FieldBody>
+                    </Field>
+                </Validation>
+                <Validation>
+                    <Field Horizontal="true">
+                        <FieldLabel ColumnSize="ColumnSize.IsFull.OnTablet.Is2.OnDesktop">Powtorz hasło</FieldLabel>
+                        <FieldBody ColumnSize="ColumnSize.IsFull.OnTablet.Is10.OnDesktop">
+                            <TextEdit Role="TextRole.Password" Placeholder="Powtórz hasło">
+                                <Feedback>
+                                    <ValidationError />
+                                </Feedback>
+                            </TextEdit>
+                        </FieldBody>
+                    </Field>
+                </Validation>
+                <Validation>
+                    <Field Horizontal="true" JustifyContent="JustifyContent.End">
+                        <FieldBody ColumnSize="ColumnSize.Is10.Is2.WithOffset">
+                            <Check @bind-Checked="@termsAndConditions">
+                                <ChildContent>
+                                    Akceptuję <Blazorise.Link To="/content/terms">regulamin</Blazorise.Link>
+                                </ChildContent>
+                                <Feedback>
+                                    <ValidationError />
+                                </Feedback>
+                            </Check>
+                        </FieldBody>
+                    </Field>
+                </Validation>
+                <Field Horizontal="true" JustifyContent="JustifyContent.End">
+                    <FieldBody ColumnSize="ColumnSize.Is10.Is2.WithOffset">
+                        <Button Color="Color.Primary" Clicked="@RegisterSubmit">Utwórz konto</Button>
+                    </FieldBody>
+                </Field>
+            </Validations>
+        </CardBody>
+    </Card>
+</Div>

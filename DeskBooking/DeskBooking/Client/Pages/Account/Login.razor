@@ -1,0 +1,61 @@
+﻿@page "/account/login"
+@layout DeskBooking.Client.Layouts.LoginLayout
+
+<Div Display="Display.Flex" Flex="Flex.JustifyContent.Center" Margin="Margin.Is5.OnDesktop.FromTop.Is3.OnMobile.FromTop">
+    <Card ColumnSize="ColumnSize.Is11.OnMobile.Is2.OnDesktop.Is3.OnTablet" Margin="Margin.Is4.OnDesktop.FromTop" Padding="Padding.Is0">
+        <CardHeader>
+            <CardTitle Size="5">Logowanie</CardTitle>
+        </CardHeader>
+        <CardBody>
+            <Field Horizontal="true">
+                <FieldBody ColumnSize="ColumnSize.IsFull">
+                    <Addons>
+                        <Addon AddonType="AddonType.Start">
+                            <AddonLabel>@@</AddonLabel>
+                        </Addon>
+                        <Addon AddonType="AddonType.Body">
+                            <TextEdit Shadow="Shadow.Small" Role="TextRole.Email" Placeholder="Podaj email" />
+                        </Addon>
+                    </Addons>
+                </FieldBody>
+            </Field>
+            <Field Horizontal="true">
+                <FieldBody ColumnSize="ColumnSize.IsFull.OnTablet">
+                    <Addons>
+                        <Addon AddonType="AddonType.Start">
+                            <AddonLabel>
+                                <Icon Name="IconName.Lock" IconStyle="IconStyle.Solid" />
+                            </AddonLabel>
+                        </Addon>
+                        <Addon AddonType="AddonType.Body">
+                            <TextEdit Shadow="Shadow.Small" Role="TextRole.Password" Placeholder="Podaj hasło" />
+                        </Addon>
+                    </Addons>
+                </FieldBody>
+            </Field>
+            <Field>
+                <Check TValue="bool">Zapamiętaj mnie</Check>
+            </Field>
+            <Field Flex="Flex.ReverseRow" Margin="Margin.Is0.FromBottom">
+                <Blazorise.Link To="/account/register">Utwórz konto</Blazorise.Link>
+</Field>
+        </CardBody>
+        <CardFooter>
+            <Button Color="Color.Primary" Clicked="SubmitLogin" Block="true">
+                <Icon Name="IconName.User" IconStyle="IconStyle.Regular" />
+                Zaloguj
+            </Button>
+            <hr class="my-4">
+
+            <Button Color="Color.Danger" Clicked="SubmiGoogletLogin" Block="true">
+                <i class="fab fa-google"></i>
+                Zaloguj via Google
+            </Button>
+
+            <Button Color="Color.Info" Clicked="SubmiFacebooktLogin" Block="true">
+                <i class="fab fa-facebook-f"></i>
+                Zaloguj via Facebook
+            </Button>
+        </CardFooter>
+    </Card>
+</Div>
