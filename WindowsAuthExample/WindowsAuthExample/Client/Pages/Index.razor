@@ -1,0 +1,11 @@
+﻿@page "/"
+@using WindowsAuthExample.Client.Services
+@inject ClientAuthorizationService AuthorizationService
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<SurveyPrompt Title="How is Blazor working for you?" />
+
+Twoja nazwa użytkownika to: <b>@AuthorizationService.AuthorizedUser?.Name</b>

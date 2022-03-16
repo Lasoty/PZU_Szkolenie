@@ -36,10 +36,14 @@ namespace DeskBooking.Server.Controllers
                 return BadRequest(new LoginResultDto {
                     Successful = false, Error = "Login lub hasło są nieprawidłowe." 
                 });
+            
+            //TODO: Pobrać role użytkownika z bazy danych
 
             Claim[] claim = new[]
             {
-                new Claim(ClaimTypes.Name, login.UserName)
+                new Claim(ClaimTypes.Name, login.UserName),
+                new Claim(ClaimTypes.Role, "User"),
+                new Claim(ClaimTypes.Role, "Administrator"),
             };
 
             JwtSecurityToken token = TokenUtilities.CreateToken(configuration, claim);

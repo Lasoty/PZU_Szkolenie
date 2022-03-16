@@ -1,0 +1,24 @@
+﻿<AuthorizeView>
+    <Authorized>
+        <BarItem>
+            <BarLink To="account/logout">
+                <Icon Name="IconName.LockOpen"></Icon>
+                Wyloguj @context.User.Identity.Name
+            </BarLink>
+        </BarItem>
+    </Authorized>
+    <NotAuthorized>
+        <BarItem>
+            <BarLink To="account/login">
+                <Icon Name="IconName.Lock"></Icon>
+                Zaloguj
+            </BarLink>
+        </BarItem>
+        <BarItem>
+            <BarLink To="account/register">
+                <i class="fas fa-sign-in-alt"></i>
+                Rejestracja
+            </BarLink>
+        </BarItem>
+    </NotAuthorized>
+</AuthorizeView>

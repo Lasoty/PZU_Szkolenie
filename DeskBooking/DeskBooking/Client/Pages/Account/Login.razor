@@ -14,7 +14,7 @@
                             <AddonLabel>@@</AddonLabel>
                         </Addon>
                         <Addon AddonType="AddonType.Body">
-                            <TextEdit Shadow="Shadow.Small" Role="TextRole.Email" Placeholder="Podaj email" />
+                            <TextEdit @bind-Text="vm.UserName" Shadow="Shadow.Small" Placeholder="Podaj nazwę użytkownika" />
                         </Addon>
                     </Addons>
                 </FieldBody>
@@ -28,13 +28,13 @@
                             </AddonLabel>
                         </Addon>
                         <Addon AddonType="AddonType.Body">
-                            <TextEdit Shadow="Shadow.Small" Role="TextRole.Password" Placeholder="Podaj hasło" />
+                            <TextEdit @bind-Text="vm.Password" Shadow="Shadow.Small" Role="TextRole.Password" Placeholder="Podaj hasło" />
                         </Addon>
                     </Addons>
                 </FieldBody>
             </Field>
             <Field>
-                <Check TValue="bool">Zapamiętaj mnie</Check>
+                <Check @bind-Checked="vm.IsPrersist" TValue="bool">Zapamiętaj mnie</Check>
             </Field>
             <Field Flex="Flex.ReverseRow" Margin="Margin.Is0.FromBottom">
                 <Blazorise.Link To="/account/register">Utwórz konto</Blazorise.Link>
